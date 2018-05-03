@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="epi.pfa.medicalcenter.RegisterActivity"
+    android:background="@color/vert">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <EditText
+            android:id="@+id/registerName"
+            android:layout_width="240dp"
+            android:layout_height="40dp"
+            android:layout_above="@+id/registerEmail"
+            android:layout_alignStart="@+id/registerEmail"
+            android:layout_marginBottom="26dp"
+            android:hint="Name"
+            android:background="@color/Grey"
+            />
+
+        <EditText
+            android:id="@+id/registerEmail"
+            android:layout_width="240dp"
+            android:layout_height="40dp"
+            android:layout_above="@+id/registerPassword"
+            android:layout_alignStart="@+id/registerPassword"
+            android:layout_marginBottom="22dp"
+            android:hint="Email"
+            android:background="@color/Grey"
+            />
+
+        <EditText
+            android:id="@+id/registerPassword"
+            android:layout_width="240dp"
+            android:layout_height="40dp"
+            android:layout_above="@+id/registerSsn"
+            android:layout_alignStart="@+id/registerSsn"
+            android:layout_marginBottom="25dp"
+            android:background="@color/Grey"
+            android:hint="Password"
+            android:inputType="textPassword"
+            />
+
+        <EditText
+            android:id="@+id/registerSsn"
+            android:layout_width="240dp"
+            android:layout_height="40dp"
+            android:layout_alignStart="@+id/registerPhone"
+            android:layout_centerVertical="true"
+            android:background="@color/Grey"
+            android:hint="Social Security Number"
+            android:inputType="number" />
+
+        <EditText
+            android:id="@+id/registerPhone"
+            android:layout_width="240dp"
+            android:layout_height="40dp"
+            android:layout_alignStart="@+id/registerSubmit"
+            android:layout_below="@+id/registerSsn"
+            android:layout_marginTop="20dp"
+            android:background="@color/Grey"
+            android:hint="Phone Number"
+            android:inputType="number" />
+
+        <Button
+            android:id="@+id/registerSubmit"
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="19dp"
+            android:text="Register"
+            android:background="@drawable/rounded_corner"
+
+
+            />
+
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>
