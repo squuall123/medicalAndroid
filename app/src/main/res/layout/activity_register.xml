@@ -1,84 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="epi.pfa.medicalcenter.RegisterActivity"
-    android:background="@color/gradStart">
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fitsSystemWindows="true">
 
-    <RelativeLayout
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:paddingTop="56dp"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp">
 
-        <EditText
-            android:id="@+id/registerName"
-            android:layout_width="240dp"
-            android:layout_height="40dp"
-            android:layout_above="@+id/registerEmail"
-            android:layout_alignStart="@+id/registerEmail"
-            android:layout_marginBottom="26dp"
-            android:hint="Name"
-            android:background="@color/Grey"
-            />
+        <ImageView android:src="@drawable/ic_user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="72dp"
+            android:layout_marginBottom="24dp"
+            android:layout_gravity="center_horizontal" />
 
-        <EditText
-            android:id="@+id/registerEmail"
-            android:layout_width="240dp"
-            android:layout_height="40dp"
-            android:layout_above="@+id/registerPassword"
-            android:layout_alignStart="@+id/registerPassword"
-            android:layout_marginBottom="22dp"
-            android:hint="Email"
-            android:background="@color/Grey"
-            />
-
-        <EditText
-            android:id="@+id/registerPassword"
-            android:layout_width="240dp"
-            android:layout_height="40dp"
-            android:layout_above="@+id/registerSsn"
-            android:layout_alignStart="@+id/registerSsn"
-            android:layout_marginBottom="25dp"
-            android:background="@color/Grey"
-            android:hint="Password"
-            android:inputType="textPassword"
-            />
-
-        <EditText
-            android:id="@+id/registerSsn"
-            android:layout_width="240dp"
-            android:layout_height="40dp"
-            android:layout_alignStart="@+id/registerPhone"
-            android:layout_centerVertical="true"
-            android:background="@color/Grey"
-            android:hint="Social Security Number"
-            android:inputType="number" />
-
-        <EditText
-            android:id="@+id/registerPhone"
-            android:layout_width="240dp"
-            android:layout_height="40dp"
-            android:layout_alignStart="@+id/registerSubmit"
-            android:layout_below="@+id/registerSsn"
-            android:layout_marginTop="20dp"
-            android:background="@color/Grey"
-            android:hint="Phone Number"
-            android:inputType="number" />
-
-        <Button
-            android:id="@+id/registerSubmit"
-            android:layout_width="240dp"
+        <!--  Name Label -->
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="19dp"
-            android:text="Register"
-            android:background="@drawable/rounded_corner"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp">
+            <EditText android:id="@+id/input_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textCapWords"
+                android:hint="Name" />
+        </android.support.design.widget.TextInputLayout>
 
+        <!-- Email Label -->
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp">
+            <EditText android:id="@+id/input_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:hint="Email" />
+        </android.support.design.widget.TextInputLayout>
 
-            />
+        <!-- Password Label -->
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp">
+            <EditText android:id="@+id/input_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:hint="Password"/>
+        </android.support.design.widget.TextInputLayout>
 
-    </RelativeLayout>
+        <!--  Phone Label -->
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp">
+            <EditText android:id="@+id/input_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:hint="Phone" />
+        </android.support.design.widget.TextInputLayout>
 
-</android.support.constraint.ConstraintLayout>
+        <!--  SSN Label -->
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp">
+            <EditText android:id="@+id/input_ssn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:hint="Social Security Number" />
+        </android.support.design.widget.TextInputLayout>
+
+        <!-- Signup Button -->
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btn_signup"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="24dp"
+            android:padding="12dp"
+            android:text="Create Account"/>
+
+        <TextView android:id="@+id/link_login"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:text="Already a member? Login"
+            android:gravity="center"
+            android:textSize="16dip"/>
+
+    </LinearLayout>
+</ScrollView>

@@ -1,5 +1,6 @@
 package epi.pfa.medicalcenter;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Message;
 import android.support.design.widget.Snackbar;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -32,22 +34,29 @@ public class LoginActivity extends AppCompatActivity {
 
 
     Button loginBtn;
-    Button registerBtn;
+    TextView registerBtn;
     EditText username;
     EditText password;
-
+    String res;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-//        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        loginBtn = (Button)findViewById(R.id.loginBtn);
-        registerBtn = (Button)findViewById(R.id.registerbtn);
-        username = (EditText)findViewById(R.id.loginName);
-        password = (EditText)findViewById(R.id.loginPassword);
+        View parentLayout = findViewById(android.R.id.content);
+
+        res = getIntent().getStringExtra("registerSuccess");
+        if (res != null && res.equals("1")){
+            Snackbar.make(parentLayout, "Successfully registred account! You can now login with your username", Snackbar.LENGTH_LONG)
+                    .setAction("Success", null).show();
+        }
+        loginBtn = (Button)findViewById(R.id.btn_login);
+        registerBtn = (TextView) findViewById(R.id.link_signup);
+        username = (EditText)findViewById(R.id.input_email);
+        password = (EditText)findViewById(R.id.input_password);
         final Intent intent = new Intent(this,MainActivity.class);
         final Intent registerIntent = new Intent(this,RegisterActivity.class);
-
+        final ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this,
+                R.style.AppTheme_Dark_Dialog);
         registerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -58,6 +67,11 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onClick(final View view) {
+
+                progressDialog.setIndeterminate(true);
+                progressDialog.setMessage("Authenticating...");
+                progressDialog.show();
+
                 Log.i("name = ",username.getText().toString());
                 Log.i("password = ",password.getText().toString());
 
@@ -90,6 +104,7 @@ public class LoginActivity extends AppCompatActivity {
                         String res = String.valueOf(response.code());
 
                         if (res.equals("404")){
+                            progressDialog.dismiss();
                             //User not found
                             //Log.i("Not Found",response.body().string());
                             Snackbar.make(view, "User Name not found, please Register", Snackbar.LENGTH_LONG)
@@ -97,6 +112,7 @@ public class LoginActivity extends AppCompatActivity {
                         }
                         else if (res.equals("401")){
                             //bad credentials
+                            progressDialog.dismiss();
 
                             Log.i("Bad Credentials",response.body().string());
                             Snackbar.make(view, "Bad Credentials, Please try again!", Snackbar.LENGTH_LONG)
@@ -109,7 +125,9 @@ public class LoginActivity extends AppCompatActivity {
                                 JSONObject resp = new JSONObject(response.body().string());
                                 //Log.i("token",resp.getString("token"));
                                 intent.putExtra("token",resp.getString("token"));
+                                progressDialog.dismiss();
                                 startActivity(intent);
+                                finish();
 
                             } catch (JSONException e) {
                                 e.printStackTrace();

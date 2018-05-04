@@ -14,7 +14,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".LoginActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            android:theme="@style/AppTheme.Dark">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -27,22 +27,18 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".RegisterActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:theme="@style/AppTheme.Dark" />
         <activity
-            android:name=".ServicesActivity"
-            android:background="@color/gradStart" />
+            android:name=".ServicesActivity" android:theme="@style/AppTheme"/>
         <activity
-            android:name=".ServiceActivity"
-            android:background="@color/gradStart" />
+            android:name=".ServiceActivity" android:theme="@style/AppTheme"/>
         <activity
-            android:name=".DoctorActivity"
-            android:background="@color/gradStart" />
+            android:name=".DoctorActivity" android:theme="@style/AppTheme.Dark.ActionBar"/>
         <activity
-            android:name=".ProfileActivity"
-            android:background="@color/gradStart" />
+            android:name=".ProfileActivity" android:theme="@style/AppTheme.Dark.ActionBar"/>
         <activity android:name=".ConsultationsActivity" />
-        <activity android:name=".ContactActivity" />
-        <activity android:name=".AboutActivity" />
+        <activity android:name=".ContactActivity" android:theme="@style/AppTheme.Dark.ActionBar"/>
+        <activity android:name=".AboutActivity" android:theme="@style/AppTheme.Dark.ActionBar"/>
         <activity android:name=".myDoctorsActivity" />
         <activity android:name=".TreatmentsActivity"></activity>
     </application>

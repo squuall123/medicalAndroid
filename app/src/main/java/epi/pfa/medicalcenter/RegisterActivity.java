@@ -37,12 +37,12 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        name = (EditText)findViewById(R.id.registerName);
-        mail = (EditText)findViewById(R.id.registerEmail);
-        password = (EditText) findViewById(R.id.registerPassword);
-        ssn = (EditText)findViewById(R.id.registerSsn);
-        phone = (EditText)findViewById(R.id.registerPhone);
-        register = (Button)findViewById(R.id.registerSubmit);
+        name = (EditText)findViewById(R.id.input_name);
+        mail = (EditText)findViewById(R.id.input_email);
+        password = (EditText) findViewById(R.id.input_password);
+        ssn = (EditText)findViewById(R.id.input_ssn);
+        phone = (EditText)findViewById(R.id.input_phone);
+        register = (Button)findViewById(R.id.btn_signup);
         final Intent intent = new Intent(this,LoginActivity.class);
         register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,8 +79,10 @@ public class RegisterActivity extends AppCompatActivity {
                     public void onResponse(Call call, final Response response) throws IOException {
 
                         Log.i("RESPONSE",response.body().string());
-                        Toast.makeText(getApplicationContext(), "Registrated Successfully !!!", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getApplicationContext(), "Registrated Successfully !!!", Toast.LENGTH_SHORT).show();
+                        intent.putExtra("registerSuccess","1");
                         startActivity(intent);
+                        finish();
 
                     }
 

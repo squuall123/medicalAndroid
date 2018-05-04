@@ -1,5 +1,6 @@
 package epi.pfa.medicalcenter;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
@@ -25,9 +26,10 @@ import okhttp3.Response;
 public class myDoctorsActivity extends AppCompatActivity {
 
     String token;
-    int uid;
+    String uid;
     ArrayList<Doctor> mList;
 
+    ProgressDialog progressDialog;
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
@@ -37,16 +39,27 @@ public class myDoctorsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_doctors);
-
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        progressDialog = new ProgressDialog(myDoctorsActivity.this,
+                R.style.AppTheme_Dark_Dialog);
+        progressDialog.setIndeterminate(true);
+        progressDialog.setMessage("Loading...");
+        progressDialog.show();
         mList = new ArrayList<Doctor>();
 
 
         Intent intent = getIntent();
         token = intent.getStringExtra("token");
-        uid = intent.getIntExtra("id",0);
+        uid = intent.getStringExtra("uid");
         if (token != null){
             getData();
         }
+    }
+
+    @Override
+    public boolean onSupportNavigateUp(){
+        finish();
+        return true;
     }
 
     public void getData(){
@@ -70,6 +83,8 @@ public class myDoctorsActivity extends AppCompatActivity {
                 // specify an adapter (see also next example)
                 mAdapter = new DoctorsAdapter(lst,getApplicationContext(),token);
                 mRecyclerView.setAdapter(mAdapter);
+
+                progressDialog.dismiss();
                 return false;
             }
         });
@@ -83,7 +98,7 @@ public class myDoctorsActivity extends AppCompatActivity {
 
                 Request request = new Request.Builder()
                         .header("Authorization","Bearer "+token)
-                        .url("http://54.38.34.120:8500/api/medecins/"+uid)
+                        .url("http://54.38.34.120:8500/api/mymedecins/"+uid)
                         .build();
 
 

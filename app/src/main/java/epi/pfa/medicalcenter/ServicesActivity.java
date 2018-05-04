@@ -1,5 +1,6 @@
 package epi.pfa.medicalcenter;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
@@ -29,7 +30,7 @@ public class ServicesActivity extends AppCompatActivity {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     String token;
-
+    ProgressDialog progressDialog;
     ArrayList<Service> mList;
 
 
@@ -37,15 +38,28 @@ public class ServicesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_services);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         mList = new ArrayList<Service>();
         Intent intent = getIntent();
         token = intent.getStringExtra("token");
+        progressDialog = new ProgressDialog(ServicesActivity.this,
+                R.style.AppTheme_Dark_Dialog);
+        progressDialog.setIndeterminate(true);
+        progressDialog.setMessage("Loading...");
+        progressDialog.show();
         if (token != null){
                 getData();
         }
 
 
 
+    }
+
+    @Override
+    public boolean onSupportNavigateUp(){
+        finish();
+        return true;
     }
 
     private void getData(){
@@ -70,7 +84,7 @@ public class ServicesActivity extends AppCompatActivity {
                 // specify an adapter (see also next example)
                 mAdapter = new ServicesAdapter(lst,getApplicationContext(),token);
                 mRecyclerView.setAdapter(mAdapter);
-
+                progressDialog.dismiss();
                 return false;
             }
         });

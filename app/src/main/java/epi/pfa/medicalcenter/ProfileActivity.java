@@ -1,5 +1,6 @@
 package epi.pfa.medicalcenter;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,22 +18,23 @@ public class ProfileActivity extends AppCompatActivity {
 
     String token;
     String profileJSON;
-
+    String idS;
     private EditText name,email,phone,password,ssn;
-    private TextView nameL;
+    private TextView nameL,mailL;
     private Button update;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-
-        name = (EditText)findViewById(R.id.profileName);
-        email = (EditText)findViewById(R.id.profileEmail);
-        phone = (EditText)findViewById(R.id.profilePhone);
-        //password = (EditText)findViewById(R.id.profilePassword);
-        ssn = (EditText) findViewById(R.id.profileSSN);
-        nameL = (TextView) findViewById(R.id.PatientName);
-        update = (Button)findViewById(R.id.profileUpdate);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        name = (EditText)findViewById(R.id.input_name);
+        email = (EditText)findViewById(R.id.input_email);
+        phone = (EditText)findViewById(R.id.input_phone);
+        password = (EditText)findViewById(R.id.input_password);
+        ssn = (EditText) findViewById(R.id.input_ssn);
+        nameL = (TextView) findViewById(R.id.user_profile_name);
+        mailL = (TextView) findViewById(R.id.user_profile_email);
+        update = (Button)findViewById(R.id.user_update_btn);
 
         Intent intent = getIntent();
         token = intent.getStringExtra("token");
@@ -43,12 +45,13 @@ public class ProfileActivity extends AppCompatActivity {
 
             //PROFILE COMPONENTS
             nameL.setText(profile.getString("name"));
+            mailL.setText(profile.getString("email"));
             name.setText(profile.getString("name"));
             email.setText(profile.getString("email"));
             phone.setText(profile.getString("phone"));
             ssn.setText(profile.getString("ssn"));
-            //password.setText(profile.getString("password"));
-
+            password.setText(profile.getString("password"));
+            idS = String.valueOf(profile.getInt("id"));
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -58,6 +61,12 @@ public class ProfileActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onSupportNavigateUp(){
+        finish();
         return true;
     }
 
@@ -81,12 +90,10 @@ public class ProfileActivity extends AppCompatActivity {
 
         if (id == R.id.action_doctors) {
             Log.i("ACTION","Doctors");
+            Log.i("ID",idS);
+            startActivity(new Intent(this,myDoctorsActivity.class).putExtra("token",token).putExtra("uid",idS));
 
-            try {
-                startActivity(new Intent(this,myDoctorsActivity.class).putExtra("token",token).putExtra("uid",new JSONObject(profileJSON).getInt("id")));
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
+
             return true;
         }
 

@@ -1,12 +1,17 @@
 package epi.pfa.medicalcenter;
 
 import android.Manifest;
+import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,6 +20,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -38,8 +44,10 @@ public class ServiceActivity extends AppCompatActivity {
     String token;
     String serviceId;
 
+
     ArrayList<Doctor> mList;
 
+    ProgressDialog progressDialog;
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
@@ -49,13 +57,18 @@ public class ServiceActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_service);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        progressDialog = new ProgressDialog(ServiceActivity.this,
+                R.style.AppTheme_Dark_Dialog);
+        progressDialog.setIndeterminate(true);
+        progressDialog.setMessage("Loading...");
+        progressDialog.show();
 
-
-        serviceName = (TextView)findViewById(R.id.serviceName);
-        serviceNumber = (TextView)findViewById(R.id.serviceNumber);
-        serviceDescription = (TextView)findViewById(R.id.serviceDescription);
-        call = (Button)findViewById(R.id.btnCall);
+        serviceName = (TextView) findViewById(R.id.serviceName);
+        serviceNumber = (TextView) findViewById(R.id.serviceNumber);
+        serviceDescription = (TextView) findViewById(R.id.serviceDescription);
+        call = (Button) findViewById(R.id.btnCall);
 
         mList = new ArrayList<Doctor>();
 
@@ -63,14 +76,42 @@ public class ServiceActivity extends AppCompatActivity {
         Intent intent = getIntent();
         token = intent.getStringExtra("token");
         serviceId = intent.getStringExtra("id");
-        if (token != null){
+        if (token != null) {
             getData();
         }
-        Log.i("ID",intent.getStringExtra("id"));
+        Log.i("ID", intent.getStringExtra("id"));
 
+
+        call.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View arg0) {
+
+                Log.i("Call", "clicked");
+                callService();
+
+            }
+        });
 
 
     }
+
+    @Override
+    public boolean onSupportNavigateUp(){
+        finish();
+        return true;
+    }
+
+    public void callService() {
+        Intent callIntent = new Intent(Intent.ACTION_CALL);
+        callIntent.setData(Uri.EMPTY.parse("tel:" + serviceNumber.getText().toString()));
+        Log.i("Number", serviceNumber.getText().toString());
+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+        startActivity(callIntent);
+
+    }
+
 
     public void getData(){
 
@@ -82,19 +123,6 @@ public class ServiceActivity extends AppCompatActivity {
                 serviceName.setText(service.getName());
                 serviceNumber.setText(service.getPhone());
                 serviceDescription.setText(service.getDescription());
-
-                call.setOnClickListener(new View.OnClickListener() {
-                    public void onClick(View arg0) {
-                        Intent callIntent = new Intent(Intent.ACTION_CALL);
-                        callIntent.setData(Uri.EMPTY.parse(serviceNumber.getText().toString()));
-                        if (ActivityCompat.checkSelfPermission(ServiceActivity.this,
-                                Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-                            return;
-                        }
-                        startActivity(callIntent);
-                    }
-                });
-
 
                 getDoctors();
 
@@ -173,6 +201,8 @@ public class ServiceActivity extends AppCompatActivity {
                 // specify an adapter (see also next example)
                 mAdapter = new DoctorsAdapter(lst,getApplicationContext(),token);
                 mRecyclerView.setAdapter(mAdapter);
+
+                progressDialog.dismiss();
                 return false;
             }
         });

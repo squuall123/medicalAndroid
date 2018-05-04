@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:theme="@style/AppTheme.Dark.ActionBar"
     tools:context="epi.pfa.medicalcenter.AboutActivity">
     <RelativeLayout
         android:layout_width="match_parent"
@@ -13,7 +14,7 @@
             android:id="@+id/textView"
             android:layout_width="318dp"
             android:layout_height="192dp"
-
+            android:textColor="@color/black"
             android:layout_alignStart="@+id/textView2"
             android:layout_below="@+id/textView2"
             android:layout_marginTop="47dp"
@@ -32,7 +33,7 @@
             android:layout_marginStart="31dp"
             android:layout_marginTop="36dp"
             android:text="About Us :"
-            android:textColor="@color/gradStart"
+            android:textColor="@color/primary"
             android:textSize="30dp"
             tools:layout_editor_absoluteX="33dp"
             tools:layout_editor_absoluteY="26dp"

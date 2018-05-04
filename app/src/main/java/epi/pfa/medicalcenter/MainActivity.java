@@ -40,7 +40,7 @@ import okhttp3.Response;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private String token;
+    private String token,uid;
     private JSONObject profile;
     TextView nameL;
     TextView mailL;
@@ -51,16 +51,16 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
 //        nameL = (TextView) findViewById(R.id.nameLabel);
 //        mailL = (TextView) findViewById(R.id.emailLabel);
         Intent intent = getIntent();
-        boutonappointements = (ImageView)findViewById(R.id.imgbuttonagenda);
-        boutondoctos = (ImageView)findViewById(R.id.imgbuttondoctor);
-        boutontreatments = (ImageView)findViewById(R.id.imgbuttontreatments);
+        boutonappointements = (ImageView)findViewById(R.id.btn_my_consultations);
+        boutondoctos = (ImageView)findViewById(R.id.btn_my_doctors);
+        boutontreatments = (ImageView)findViewById(R.id.btn_my_prescriptions);
         token = intent.getStringExtra("token");
 
-        setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         View parentLayout = findViewById(android.R.id.content);
@@ -103,6 +103,7 @@ public class MainActivity extends AppCompatActivity
 
         nameL = headerView.findViewById(R.id.nameLabel);
         mailL = headerView.findViewById(R.id.emailLabel);
+
         navigationView.setNavigationItemSelectedListener(this);
 
 
@@ -118,7 +119,7 @@ public class MainActivity extends AppCompatActivity
                     //init(json.getString("name"),json.getString("email"));
                     nameL.setText(json.getString("name"));
                     mailL.setText(json.getString("email"));
-
+                    uid = String.valueOf(json.getInt("id"));
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -217,7 +218,8 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void getDoctors(View view){
-        startActivity(new Intent(this, myDoctorsActivity.class).putExtra("token",token));
+        startActivity(new Intent(this,myDoctorsActivity.class).putExtra("token",token).putExtra("uid",uid));
+
     }
 
     public void getConsultations (View view){
@@ -226,6 +228,10 @@ public class MainActivity extends AppCompatActivity
 
     public void getTreatments (View view){
         startActivity(new Intent(this, TreatmentsActivity.class).putExtra("token",token));
+    }
+
+    public void getServices (View view){
+        startActivity(new Intent(this, ServicesActivity.class).putExtra("token",token));
     }
 
 }

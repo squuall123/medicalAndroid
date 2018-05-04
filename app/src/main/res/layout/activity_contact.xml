@@ -4,13 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:theme="@style/AppTheme.Dark.ActionBar"
     tools:context="epi.pfa.medicalcenter.ContactActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp">
+        android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/textViewsubject"
@@ -19,10 +18,8 @@
             android:layout_above="@+id/editTextsubject"
             android:layout_alignEnd="@+id/textViewmessage"
             android:text="Subject :"
-            android:textColor="@color/headings"
-            android:textSize="11sp"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="25dp" />
+            android:textColor="@color/primary"
+            android:textSize="11sp"/>
 
         <TextView
             android:id="@+id/textViewmessage"
@@ -32,10 +29,8 @@
             android:layout_alignStart="@+id/editTextmsg"
             android:layout_marginBottom="61dp"
             android:text="Message :"
-            android:textColor="@color/headings"
-            android:textSize="11sp"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="155dp" />
+            android:textColor="@color/primary"
+            android:textSize="11sp" />
 
         <EditText
             android:id="@+id/editTextsubject"
@@ -46,8 +41,10 @@
             android:layout_marginBottom="31dp"
             android:ems="10"
             android:inputType="text"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="84dp" />
+            android:hint="Your Subject"
+            android:textColor="@color/black"
+            android:backgroundTint="@color/black"
+            />
 
         <EditText
             android:id="@+id/editTextmsg"
@@ -58,21 +55,17 @@
             android:layout_marginBottom="56dp"
             android:ems="10"
             android:inputType="textMultiLine"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="216dp" />
+            android:textColor="@color/black"
+            android:backgroundTint="@color/black"/>
 
         <Button
             android:id="@+id/btnSend"
-            android:layout_width="133dp"
+            android:layout_width="240dp"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="43dp"
-            android:background="@drawable/rounded_corner_grey"
-            android:text="Send"
-            android:textColor="@color/vert"
-            tools:layout_editor_absoluteX="114dp"
-            tools:layout_editor_absoluteY="380dp" />
+            android:text="Send"/>
 
     </RelativeLayout>
 

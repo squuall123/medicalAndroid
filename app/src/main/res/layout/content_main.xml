@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,40 +8,133 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="epi.pfa.medicalcenter.MainActivity"
     tools:showIn="@layout/app_bar_main">
-    <RelativeLayout
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="10dp">
+
+                <ImageView
+                    android:id="@+id/btn_my_doctors"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:onClick="getDoctors"
+                    android:src="@drawable/ic_doctor" />
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="My Doctors"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"/>
+
+            </LinearLayout>
 
 
-        <ImageView
-            android:id="@+id/imgbuttondoctor"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="16dp"
-            app:srcCompat="@drawable/ic_doctor"
-            android:onClick="getDoctors"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="10dp">
 
-        <ImageView
-            android:id="@+id/imgbuttonagenda"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:layout_alignStart="@+id/imageView4"
-            android:layout_below="@+id/imageView4"
-            android:layout_marginTop="29dp"
-            app:srcCompat="@mipmap/ic_aa"
-            android:onClick="getConsultations"/>
+                <ImageView
+                    android:id="@+id/btn_my_prescriptions"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:onClick="getTreatments"
+                    android:src="@drawable/ic_prescription" />
 
-        <ImageView
-            android:id="@+id/imgbuttontreatments"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="77dp"
-            app:srcCompat="@mipmap/ic_launcher_foreground" />
-    </RelativeLayout>
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="My Orders"
+                    android:layout_gravity="center"/>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="10dp">
+
+
+                <ImageView
+                    android:id="@+id/btn_my_consultations"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:onClick="getConsultations"
+                    android:src="@drawable/ic_notebook" />
+
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="My Consultations"
+                    android:layout_gravity="center"/>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="10dp">
+
+
+                <ImageView
+                    android:id="@+id/btn_services"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:onClick="getServices"
+                    android:src="@drawable/ic_medical" />
+
+
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Services"
+                    android:layout_gravity="center"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+
+
+
+
+
+    </LinearLayout>
+
+
 
 
 </android.support.constraint.ConstraintLayout>
