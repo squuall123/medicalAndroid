@@ -81,6 +81,12 @@ public class ProfileActivity extends AppCompatActivity {
 
         if (id == R.id.action_doctors) {
             Log.i("ACTION","Doctors");
+
+            try {
+                startActivity(new Intent(this,myDoctorsActivity.class).putExtra("token",token).putExtra("uid",new JSONObject(profileJSON).getInt("id")));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
             return true;
         }
 

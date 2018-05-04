@@ -42,7 +42,9 @@
             android:background="@color/gradStart" />
         <activity android:name=".ConsultationsActivity" />
         <activity android:name=".ContactActivity" />
-        <activity android:name=".AboutActivity"></activity>
+        <activity android:name=".AboutActivity" />
+        <activity android:name=".myDoctorsActivity" />
+        <activity android:name=".TreatmentsActivity"></activity>
     </application>
 
 </manifest>

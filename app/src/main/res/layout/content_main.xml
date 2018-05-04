@@ -12,10 +12,34 @@
         android:layout_height="match_parent">
 
 
+        <ImageView
+            android:id="@+id/imgbuttondoctor"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+            app:srcCompat="@drawable/ic_doctor"
+            android:onClick="getDoctors"/>
 
+        <ImageView
+            android:id="@+id/imgbuttonagenda"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_alignStart="@+id/imageView4"
+            android:layout_below="@+id/imageView4"
+            android:layout_marginTop="29dp"
+            app:srcCompat="@mipmap/ic_aa"
+            android:onClick="getConsultations"/>
 
-
-
+        <ImageView
+            android:id="@+id/imgbuttontreatments"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="77dp"
+            app:srcCompat="@mipmap/ic_launcher_foreground" />
     </RelativeLayout>
 
 

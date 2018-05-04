@@ -1,6 +1,7 @@
 package epi.pfa.medicalcenter;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -19,6 +20,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.json.JSONException;
@@ -42,9 +44,9 @@ public class MainActivity extends AppCompatActivity
     private JSONObject profile;
     TextView nameL;
     TextView mailL;
-    ImageButton boutondoctos;
-    ImageButton boutontreatments;
-    ImageButton boutonappointements;
+    ImageView boutondoctos;
+    ImageView boutontreatments;
+    ImageView boutonappointements;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,9 +55,9 @@ public class MainActivity extends AppCompatActivity
 //        nameL = (TextView) findViewById(R.id.nameLabel);
 //        mailL = (TextView) findViewById(R.id.emailLabel);
         Intent intent = getIntent();
-        //boutonappointements = (ImageButton)findViewById(R.id.btnagenda);
-        //boutondoctos = (ImageButton)findViewById(R.id.btndoctors);
-        //boutontreatments = (ImageButton)findViewById(R.id.btntreatments);
+        boutonappointements = (ImageView)findViewById(R.id.imgbuttonagenda);
+        boutondoctos = (ImageView)findViewById(R.id.imgbuttondoctor);
+        boutontreatments = (ImageView)findViewById(R.id.imgbuttontreatments);
         token = intent.getStringExtra("token");
 
         setContentView(R.layout.activity_main);
@@ -73,6 +75,21 @@ public class MainActivity extends AppCompatActivity
                         .setAction("Action", null).show();
             }
         });
+        final Context context = getApplicationContext();
+/*            boutonappointements.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                startActivity(new Intent(context,ConsultationsActivity.class).putExtra("token",token));
+                            }
+                        });
+
+            boutondoctos.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                startActivity(new Intent(context,DoctorsAdapter.class).putExtra("token",token));
+                            }
+                        });
+*/
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -140,19 +157,7 @@ public class MainActivity extends AppCompatActivity
 
                         //handler.handleMessage(msg);
 
-                       /* boutonappointements.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                startActivity(new Intent(this,ConsultationsActivity.class).putExtra("token",token));
-                            }
-                        });
-                        boutondoctos.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                startActivity(new Intent(this,DoctorsAdapter.class).putExtra("token",token));
-                            }
-                        });
-                    */
+
                     }
                 });
             }
@@ -210,4 +215,17 @@ public class MainActivity extends AppCompatActivity
         mailL.setText(email);
 
     }
+
+    public void getDoctors(View view){
+        startActivity(new Intent(this, myDoctorsActivity.class).putExtra("token",token));
+    }
+
+    public void getConsultations (View view){
+        startActivity(new Intent(this, ConsultationsActivity.class).putExtra("token",token));
+    }
+
+    public void getTreatments (View view){
+        startActivity(new Intent(this, TreatmentsActivity.class).putExtra("token",token));
+    }
+
 }

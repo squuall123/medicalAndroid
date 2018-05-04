@@ -4,7 +4,6 @@
     <modules>
       <module fileurl="file://C:\Users\Amal\Desktop\android\medicalAndroid\MedicalCenter.iml" filepath="C:\Users\Amal\Desktop\android\medicalAndroid\MedicalCenter.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://C:\Users\Amal\Desktop\android\medicalAndroid\app\app.iml" filepath="C:\Users\Amal\Desktop\android\medicalAndroid\app\app.iml" />
       <module fileurl="file://$PROJECT_DIR$/medicalAndroid.iml" filepath="$PROJECT_DIR$/medicalAndroid.iml" />
     </modules>
   </component>
