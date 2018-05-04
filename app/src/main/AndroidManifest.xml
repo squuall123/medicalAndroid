@@ -3,6 +3,7 @@
     package="epi.pfa.medicalcenter">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
         android:allowBackup="true"
@@ -11,8 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LoginActivity" android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-
+        <activity
+            android:name=".LoginActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,12 +25,24 @@
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".RegisterActivity" android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
-        <activity android:name=".ServicesActivity" />
-        <activity android:name=".ServiceActivity" />
-        <activity android:name=".DoctorActivity" />
-        <activity android:name=".ProfileActivity" />
-        <activity android:name=".ConsultationsActivity"></activity>
+        <activity
+            android:name=".RegisterActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".ServicesActivity"
+            android:background="@color/gradStart" />
+        <activity
+            android:name=".ServiceActivity"
+            android:background="@color/gradStart" />
+        <activity
+            android:name=".DoctorActivity"
+            android:background="@color/gradStart" />
+        <activity
+            android:name=".ProfileActivity"
+            android:background="@color/gradStart" />
+        <activity android:name=".ConsultationsActivity" />
+        <activity android:name=".ContactActivity" />
+        <activity android:name=".AboutActivity"></activity>
     </application>
 
 </manifest>

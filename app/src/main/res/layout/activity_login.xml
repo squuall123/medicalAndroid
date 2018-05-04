@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="epi.pfa.medicalcenter.LoginActivity"
-    android:background="@color/vert">
+    android:background="@color/gradStart">
 
     <RelativeLayout
         android:layout_width="match_parent"

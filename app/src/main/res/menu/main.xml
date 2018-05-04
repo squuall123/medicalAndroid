@@ -11,4 +11,9 @@
         android:orderInCategory="100"
         android:title="My Doctors"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/action_logout"
+        android:orderInCategory="100"
+        android:title="Disconnet"
+        app:showAsAction="never" />
 </menu>

@@ -1,11 +1,13 @@
 package epi.pfa.medicalcenter;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -41,7 +43,7 @@ public class RegisterActivity extends AppCompatActivity {
         ssn = (EditText)findViewById(R.id.registerSsn);
         phone = (EditText)findViewById(R.id.registerPhone);
         register = (Button)findViewById(R.id.registerSubmit);
-
+        final Intent intent = new Intent(this,LoginActivity.class);
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -77,8 +79,8 @@ public class RegisterActivity extends AppCompatActivity {
                     public void onResponse(Call call, final Response response) throws IOException {
 
                         Log.i("RESPONSE",response.body().string());
-
-                        
+                        Toast.makeText(getApplicationContext(), "Registrated Successfully !!!", Toast.LENGTH_SHORT).show();
+                        startActivity(intent);
 
                     }
 

@@ -9,31 +9,73 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="135dp"
+        tools:layout_editor_absoluteY="3dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/serviceName"
-            android:text="Service Name"/>
+        <RelativeLayout
+            android:id="@+id/rellay1"
+            android:layout_width="match_parent"
+            android:layout_height="101dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/grad"
+            android:paddingBottom="20dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/serviceNumber"
-            android:text="Number"/>
+            <TextView
+                android:id="@+id/serviceName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignTop="@+id/serviceNumber"
+                android:layout_marginStart="11dp"
+                android:text="Service Name"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textSize="20dp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/serviceDescription"
-            android:text="Description"/>
+            <TextView
+                android:id="@+id/serviceNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/serviceDescription"
+                android:layout_alignParentEnd="true"
+                android:layout_marginBottom="12dp"
+                android:layout_marginEnd="22dp"
+                android:text="Number"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textColor="@color/lightgray"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/serviceDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignStart="@+id/serviceName"
+                android:text="Description"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+        </RelativeLayout>
+
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/doctrosList"
-            android:scrollbars="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:scrollbars="vertical" />
+
+        <Button
+            android:id="@+id/btnCall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_turquoise"
+            android:text="Call"
+            tools:layout_editor_absoluteX="148dp"
+            tools:layout_editor_absoluteY="299dp" />
     </LinearLayout>
+
+
+
 
 </android.support.constraint.ConstraintLayout>

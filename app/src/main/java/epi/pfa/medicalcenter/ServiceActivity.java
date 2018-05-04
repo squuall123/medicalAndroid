@@ -1,13 +1,19 @@
 package epi.pfa.medicalcenter;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import org.json.JSONArray;
@@ -28,6 +34,7 @@ public class ServiceActivity extends AppCompatActivity {
     TextView serviceName;
     TextView serviceNumber;
     TextView serviceDescription;
+    Button call;
     String token;
     String serviceId;
 
@@ -45,6 +52,7 @@ public class ServiceActivity extends AppCompatActivity {
         serviceName = (TextView)findViewById(R.id.serviceName);
         serviceNumber = (TextView)findViewById(R.id.serviceNumber);
         serviceDescription = (TextView)findViewById(R.id.serviceDescription);
+        call = (Button)findViewById(R.id.btnCall);
 
         mList = new ArrayList<Doctor>();
 
@@ -56,6 +64,8 @@ public class ServiceActivity extends AppCompatActivity {
             getData();
         }
         Log.i("ID",intent.getStringExtra("id"));
+
+
 
     }
 
@@ -69,6 +79,8 @@ public class ServiceActivity extends AppCompatActivity {
                 serviceName.setText(service.getName());
                 serviceNumber.setText(service.getPhone());
                 serviceDescription.setText(service.getDescription());
+
+
 
                 getDoctors();
 
@@ -113,12 +125,26 @@ public class ServiceActivity extends AppCompatActivity {
                         }
 
 
+
+
                     }
 
                 });
+
             }
         });
         thread.start();
+        call.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View arg0) {
+                Intent callIntent = new Intent(Intent.ACTION_CALL);
+                callIntent.setData(Uri.EMPTY.parse("'"+serviceNumber+"'"));
+                if (ActivityCompat.checkSelfPermission(ServiceActivity.this,
+                        Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                    return;
+                }
+                startActivity(callIntent);
+            }
+        });
     }
 
     public void getDoctors(){

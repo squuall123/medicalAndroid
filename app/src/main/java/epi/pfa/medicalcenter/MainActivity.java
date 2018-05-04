@@ -18,6 +18,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import org.json.JSONException;
@@ -41,6 +42,9 @@ public class MainActivity extends AppCompatActivity
     private JSONObject profile;
     TextView nameL;
     TextView mailL;
+    ImageButton boutondoctos;
+    ImageButton boutontreatments;
+    ImageButton boutonappointements;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +53,9 @@ public class MainActivity extends AppCompatActivity
 //        nameL = (TextView) findViewById(R.id.nameLabel);
 //        mailL = (TextView) findViewById(R.id.emailLabel);
         Intent intent = getIntent();
+        //boutonappointements = (ImageButton)findViewById(R.id.btnagenda);
+        //boutondoctos = (ImageButton)findViewById(R.id.btndoctors);
+        //boutontreatments = (ImageButton)findViewById(R.id.btntreatments);
         token = intent.getStringExtra("token");
 
         setContentView(R.layout.activity_main);
@@ -133,6 +140,19 @@ public class MainActivity extends AppCompatActivity
 
                         //handler.handleMessage(msg);
 
+                       /* boutonappointements.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                startActivity(new Intent(this,ConsultationsActivity.class).putExtra("token",token));
+                            }
+                        });
+                        boutondoctos.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                startActivity(new Intent(this,DoctorsAdapter.class).putExtra("token",token));
+                            }
+                        });
+                    */
                     }
                 });
             }
@@ -171,8 +191,11 @@ public class MainActivity extends AppCompatActivity
             startActivity(new Intent(this,ServicesActivity.class).putExtra("token",token));
         } else if (id == R.id.nav_share) {
             Log.i("About","About");
+            startActivity(new Intent(this,AboutActivity.class));
+
         } else if (id == R.id.nav_send) {
             Log.i("Contact","Contact");
+            startActivity(new Intent(this,ContactActivity.class).putExtra("token",token));
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
