@@ -223,11 +223,11 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void getConsultations (View view){
-        startActivity(new Intent(this, ConsultationsActivity.class).putExtra("token",token));
+        startActivity(new Intent(this, ConsultationsActivity.class).putExtra("token",token).putExtra("id",uid));
     }
 
     public void getTreatments (View view){
-        startActivity(new Intent(this, TreatmentsActivity.class).putExtra("token",token));
+        startActivity(new Intent(this, TreatmentsActivity.class).putExtra("token",token).putExtra("id",uid));
     }
 
     public void getServices (View view){

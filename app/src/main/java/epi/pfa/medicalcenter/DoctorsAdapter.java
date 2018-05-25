@@ -54,7 +54,7 @@ public class DoctorsAdapter extends RecyclerView.Adapter<DoctorsAdapter.ViewHold
 
                 Log.i("DEBUG", String.valueOf(mList.get(position).getId()));
                 Intent intent = new Intent(mContext, DoctorActivity.class);
-                //intent.addFlags(FLAG_ACTIVITY_NEW_TASK);
+                intent.addFlags(FLAG_ACTIVITY_NEW_TASK);
 
                 intent.putExtra("id",String.valueOf(mList.get(position).getId()));
                 intent.putExtra("name", mList.get(position).getName());

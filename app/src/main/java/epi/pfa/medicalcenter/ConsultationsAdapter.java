@@ -22,63 +22,60 @@ import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
  * Created by squall on 18/11/2017.
  */
 
-public class ServicesAdapter extends RecyclerView.Adapter<ServicesAdapter.ViewHolder> {
+public class ConsultationsAdapter extends RecyclerView.Adapter<ConsultationsAdapter.ViewHolder> {
 
-    private ArrayList<Service> mList;
+    private ArrayList<Consultation> mList;
     private Context mContext;
     private String token;
-    //private Intent intent;
 
-    public ServicesAdapter(ArrayList<Service> mList, Context context, String token){
+    public ConsultationsAdapter(ArrayList<Consultation> mList, Context context, String token){
         this.mList = mList;
         this.mContext = context;
         this.token = token;
-        //intent = new Intent(mContext,ServiceActivity.class);
-
-
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.service_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.consultation_item, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(ServicesAdapter.ViewHolder holder, final int position) {
-
-        holder.name.setText(mList.get(position).getName());
+    public void onBindViewHolder(ConsultationsAdapter.ViewHolder holder, final int position) {
+        final String date = mList.get(position).getDate().substring(0, Math.min(mList.get(position).getDate().length(), 10));
+        final String time = mList.get(position).getTime().substring(11,16);
+        holder.date.setText(date + " "+ time);
         holder.gotoBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(mContext, ServiceActivity.class);
+                Intent intent = new Intent(mContext, ShowConsultationActivity.class);
                 intent.addFlags(FLAG_ACTIVITY_NEW_TASK);
 
-                intent.putExtra("id",String.valueOf(mList.get(position).getId()));
-                intent.putExtra("nom", mList.get(position).getName());
-                intent.putExtra("description", mList.get(position).getDescription());
-                intent.putExtra("num_tel",mList.get(position).getPhone());
+                intent.putExtra("patient",String.valueOf(mList.get(position).getPatient()));
+                intent.putExtra("date", date);
+                intent.putExtra("time", time);
+                intent.putExtra("description",mList.get(position).getDescription());
                 intent.putExtra("token",token);
                 mContext.startActivity(intent);
 
-                //Log.i("DEBUG", String.valueOf(mList.get(position).getId()));
             }
         });
 
     }
 
-    @Override
-    public int getItemCount() {
-        return mList.size();
-    }
+
+        @Override
+        public int getItemCount() {
+            return mList.size();
+        }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView name;
+        public TextView date;
         public ImageView gotoBtn;
         public ViewHolder(View view) {
             super(view);
-            name = (TextView) view.findViewById(R.id.serviceName);
+            date = (TextView) view.findViewById(R.id.serviceName);
             gotoBtn = (ImageView) view.findViewById(R.id.tool);
         }
     }

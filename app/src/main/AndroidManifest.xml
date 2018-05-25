@@ -29,18 +29,28 @@
             android:name=".RegisterActivity"
             android:theme="@style/AppTheme.Dark" />
         <activity
-            android:name=".ServicesActivity" android:theme="@style/AppTheme"/>
+            android:name=".ServicesActivity"
+            android:theme="@style/AppTheme" />
         <activity
-            android:name=".ServiceActivity" android:theme="@style/AppTheme"/>
+            android:name=".ServiceActivity"
+            android:theme="@style/AppTheme" />
         <activity
-            android:name=".DoctorActivity" android:theme="@style/AppTheme.Dark.ActionBar"/>
+            android:name=".DoctorActivity"
+            android:theme="@style/AppTheme.Dark.ActionBar" />
         <activity
-            android:name=".ProfileActivity" android:theme="@style/AppTheme.Dark.ActionBar"/>
+            android:name=".ProfileActivity"
+            android:theme="@style/AppTheme.Dark.ActionBar" />
         <activity android:name=".ConsultationsActivity" />
-        <activity android:name=".ContactActivity" android:theme="@style/AppTheme.Dark.ActionBar"/>
-        <activity android:name=".AboutActivity" android:theme="@style/AppTheme.Dark.ActionBar"/>
+        <activity
+            android:name=".ContactActivity"
+            android:theme="@style/AppTheme.Dark.ActionBar" />
+        <activity
+            android:name=".AboutActivity"
+            android:theme="@style/AppTheme.Dark.ActionBar" />
         <activity android:name=".myDoctorsActivity" />
-        <activity android:name=".TreatmentsActivity"></activity>
+        <activity android:name=".TreatmentsActivity" />
+        <activity android:name=".ShowConsultationActivity" />
+        <activity android:name=".howTreatmentActivity"></activity>
     </application>
 
 </manifest>
