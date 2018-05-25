@@ -101,7 +101,8 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Save PDF" />
+                android:text="Save PDF"
+                android:id="@+id/getPDF"/>
 
         </LinearLayout>
 
